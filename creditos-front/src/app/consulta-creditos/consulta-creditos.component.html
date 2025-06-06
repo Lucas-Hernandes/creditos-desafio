@@ -1,0 +1,56 @@
+<header>
+  <h1>Desáfio Técnico - Lucas Candido Hernandes</h1>
+  <a href="https://www.linkedin.com/in/lucas-candido-867ab41b3/" target="_blank" rel="noopener">
+    >>Acesse meu Linkedin<<
+  </a>
+</header>
+<body>
+  <div class="container">
+    <h1>Consulta de Créditos</h1>
+
+    <div class="form-section">
+      <label>Número da NFS-e:</label>
+      <input [(ngModel)]="numeroNfse" placeholder="Digite o número da NFS-e" />
+      <button (click)="buscarPorNfse()">Buscar por NFS-e</button>
+    </div>
+
+    <div class="form-section">
+      <label>Número do Crédito:</label>
+      <input [(ngModel)]="numeroCredito" placeholder="Digite o número do crédito" />
+      <button (click)="buscarPorCredito()">Buscar por Crédito</button>
+    </div>
+
+    <p *ngIf="erro" class="erro">{{ erro }}</p>
+
+    <table *ngIf="creditos.length > 0">
+      <thead>
+        <tr>
+          <th>Número Crédito</th>
+          <th>Número NFS-e</th>
+          <th>Data de Constituição</th>
+          <th>Valor ISSQN</th>
+          <th>Tipo de Crédito</th>
+          <th>Simples Nacional</th>
+          <th>Alíquota</th>
+          <th>Valor Faturado</th>
+          <th>Valor Dedução</th>
+          <th>Base Cálculo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of creditos">
+          <td>{{ c.numeroCredito }}</td>
+          <td>{{ c.numeroNfse }}</td>
+          <td>{{ c.dataConstituicao }}</td>
+          <td>{{ c.valorIssqn }}</td>
+          <td>{{ c.tipoCredito }}</td>
+          <td>{{ c.simplesNacional ? 'Sim' : 'Não' }}</td>
+          <td>{{ c.aliquota }}</td>
+          <td>{{ c.valorFaturado }}</td>
+          <td>{{ c.valorDeducao }}</td>
+          <td>{{ c.baseCalculo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>

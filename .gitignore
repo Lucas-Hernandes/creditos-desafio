@@ -1,0 +1,44 @@
+# --- GERAL ---
+*.log
+*.tmp
+*.temp
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- IDEs ---
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VSCode
+.vscode/
+
+# --- Java / Spring Boot ---
+/creditos-api/target/
+/creditos-api/.mvn/wrapper/maven-wrapper.jar
+/creditos-api/.mvn/wrapper/maven-wrapper.properties
+/creditos-api/.mvn/wrapper/maven-wrapper.sh
+
+# --- Maven ---
+/creditos-api/.mvn/
+/creditos-api/mvnw
+/creditos-api/mvnw.cmd
+
+# --- Angular ---
+/creditos-front/node_modules/
+/creditos-front/dist/
+/creditos-front/.angular/cache
+/creditos-front/.angular/config.json
+
+# --- Docker volumes (caso crie bind volumes locais) ---
+pgdata/
+
+# --- System files ---
+*.orig
+*.bak

@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_creditos
+    environment:
+      POSTGRES_DB: creditosdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: DesafioCreditos2025
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./creditos-api/docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build:
+      context: ./creditos-api
+    container_name: creditos-api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/creditosdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: DesafioCreditos2025
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./creditos-front
+    container_name: creditos-front
+    ports:
+      - "4200:80"
+    depends_on:
+      - app
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+volumes:
+  pgdata:

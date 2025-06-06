@@ -1,0 +1,72 @@
+$dark-primary-color: #512DA8;
+$light-primary-color: #D1C4E9;
+$primary-color: #673AB7;
+$text-color: #FFFFFF;
+$accent-color: #E040FB;
+
+header {
+  padding: 16px 0;
+  text-align: center;
+  background-color: $primary-color;
+  color: $text-color;
+  a:hover{
+    font-weight: bolder;
+  }
+}
+
+body {
+  background-color: #efe5fd;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+
+  .form-section {
+    margin: 24px 0;
+
+    input {
+      width: 250px;
+      margin: 0 24px;
+      padding: 5px;
+      background-color: white;
+      border-radius: 10px;
+      // box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    button {
+      background-color: $primary-color;
+      color: #efe5fd;
+      padding: 5px 10px;
+      border-radius: 10px;
+      transition: transform 0.2s ease-in-out;
+      &:hover {
+        background-color: $dark-primary-color;
+        box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .erro {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: $light-primary-color;
+
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+  }
+}
